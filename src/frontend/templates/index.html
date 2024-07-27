@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Template</title>
+    <link rel="stylesheet" href="/css/vendored/bulma.min.css">
+    <script src="/js/common.js" async></script>
+    <script src="/js/index.js" async></script>
+  </head>
+  <body>
+    <script id="replace_with_navbar" src="/js/nav.js"></script>
+    <div class="tile is-ancestor m-4">
+      <div class="tile" style="height:fit-content">
+        <div class="box">
+          <h1 class="title">Generic Webpage</h1>
+          <p>Placeholder text here</p>
+        </div>
+      </div>
+      <div class="tile" style="height:fit-content">
+        <div class="box">
+          <h1 class="title" id="db_size">The database is: {0}</h1>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;height:fit-content;bottom:0;width:100%;">
+      <div id="replace_with_footer"></div>
+    </div>
+  </body>
+</html>
