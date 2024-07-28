@@ -49,6 +49,7 @@ def images_to_base64(images: list[Image.Image]) -> list[str]:
   for image in images:
     b = BytesIO()
     image.save(b, format="png")
+    b.seek(0)
     output.append(base64.b64encode(b.read()).decode())
 
   return output
