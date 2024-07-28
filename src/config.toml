@@ -5,12 +5,18 @@ devmode = false
   url = "postgresql://user@ip:port/db_name"
   password = "secure_password"
 
+[ai]
+  # Comes from huggingface
+  model = "runwayml/stable-diffusion-v1-5"
+  # This model runs about 200ms for 1kb of text on Ryzen 5 3600 (3.6GHz)
+  device = "cuda:0"
+
 [log]
   file = ""
 
 [srv]
   host = "0.0.0.0"
-  port = 8080
+  port = 9390
   # IPs exempt from ratelimiting.
   ratelimit_exempt = [
     "192.168.0.0/16",
