@@ -99,7 +99,7 @@ class Limiter:
     self.parse_limit(normal_limit)
     if auth_limit:
       self.parse_limit(auth_limit)
-      
+
     def _decorator(
       f: Callable[[Request, None], Awaitable[Response]],
     ) -> Callable[[Request, None], Awaitable[Response]]:
@@ -175,9 +175,11 @@ class Limiter:
     ip = get_origin_ip(request)
     if self.is_exempt(ip):
       return None
-      
+
     if self.use_auth and auth_limit is None:
       raise Exception("must pass auth limit when use_auth is True!")
+
+    ident = None
 
     if self.use_auth:
       try:
@@ -195,6 +197,7 @@ class Limiter:
           resolved_limit = auth_limit
       except Exception:
         ident = None
+
     if ident is None:
       ident = hashlib.sha512(ip.encode()).hexdigest()
       resolved_limit = normal_limit
@@ -206,7 +209,6 @@ class Limiter:
       self.current_limits[route_name] = {}
     if ident not in self.current_limits[route_name]:
       self.current_limits[route_name][ident] = []
-
 
     user_limits = self.current_limits[route_name][ident]
 
