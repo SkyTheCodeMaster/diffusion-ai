@@ -22,7 +22,7 @@ LOG = logging.getLogger(__name__)
 MODEL_ID = config["ai"]["model"]
 DEVICE = config["ai"]["device"]
 MODEL_LOCK = asyncio.Lock()
-pipe = DiffusionPipeline.from_pretrained(MODEL_ID, torch_dtype=torch.float16)
+pipe = DiffusionPipeline.from_pretrained(MODEL_ID, torch_dtype=torch.float16, safety_checker=None)
 pipe.to(DEVICE)
 
 if not torch.cuda.is_available() and "cuda" in DEVICE:
